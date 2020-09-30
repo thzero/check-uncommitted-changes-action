@@ -20,8 +20,8 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.head_ref }}
-      - name: Make changes that are not committed
-        run: echo "this is not committed" > stuff.txt
+      - name: Make uncommitted changes by creating empty file
+        run: touch uncommitted.tmp
       - name: Check for uncommitted changes
         id: check-changes
         uses: mskri/check-uncommitted-changes-action@v1.0.0
