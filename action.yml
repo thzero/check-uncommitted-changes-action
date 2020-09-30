@@ -1,0 +1,8 @@
+name: "Check uncommitted changes"
+description: "Checks if a git repository has uncommitted changes"
+outputs:
+  changed:
+    description: "Value indicating if there are uncommitted changes in the repository"
+runs:
+  using: "docker"
+  image: "Dockerfile"

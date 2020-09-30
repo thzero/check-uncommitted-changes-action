@@ -1,0 +1,18 @@
+on: [push]
+
+name: Check uncommitted changes
+jobs:
+  check-uncommitted-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Make changes that are not committed
+        run: echo "this is not committed" > stuff.txt
+      - name: Check for uncommitted changes
+        id: changes
+        uses: ./
+      - name: Evaluate if there are changes
+        if: steps.changes.outputs.changed == 1
+        run: echo "There are uncommitted changes"
