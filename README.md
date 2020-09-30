@@ -23,11 +23,13 @@ jobs:
         run: touch uncommitted.tmp
       - name: Check for uncommitted changes
         id: check-changes
-        uses: mskri/check-uncommitted-changes-action@v1.0.0
+        uses: mskri/check-uncommitted-changes-action@v1.0.1
       - name: Evaluate if there are changes
         if: steps.check-changes.outputs.outcome == failure()
         run: echo "There are uncommitted changes"
 ```
+
+Check uncommitted changes and print them out
 
 ```yaml
 name: Check uncommitted changes and print them out
@@ -42,7 +44,7 @@ jobs:
         run: touch uncommitted.tmp
       - name: Check for uncommitted changes
         id: check-changes
-        uses: mskri/check-uncommitted-changes-action@v1.0.0
+        uses: mskri/check-uncommitted-changes-action@v1.0.1
       - name: Print uncommitted changes
         if: steps.check-changes.outputs.changes != ''
         run: echo "There are uncommitted changes"
