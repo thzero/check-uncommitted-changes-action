@@ -31,3 +31,7 @@ jobs:
 ```
 
 Note: You can change the `id` of the step but remember to change the referencing `id` on the subsequent step(s).
+
+## Inspired by
+
+https://github.com/marketplace/actions/has-changes
