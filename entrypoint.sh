@@ -9,4 +9,4 @@ function check_uncommitted_changes() {
   fi
 }
 
-echo ::set-output name=changed::$(check_uncommitted_changes)
+echo ::set-output name=changes::$(check_uncommitted_changes)

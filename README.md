@@ -23,10 +23,10 @@ jobs:
       - name: Make changes that are not committed
         run: echo "this is not committed" > stuff.txt
       - name: Check for uncommitted changes
-        id: changes
+        id: check-changes
         uses: mskri/check-uncommitted-changes-action@v1.0.0
       - name: Evaluate if there are changes
-        if: steps.changes.outputs.changed == 1
+        if: steps.check-changes.outputs.changes == 1
         run: echo "There are uncommitted changes"
 ```
 
