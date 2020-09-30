@@ -1,6 +1,6 @@
 on: [push]
 
-name: Check uncommitted changes
+name: Check uncommitted changes and print them out
 jobs:
   check-uncommitted-changes:
     runs-on: ubuntu-latest
@@ -13,6 +13,6 @@ jobs:
       - name: Check for uncommitted changes
         id: check-changes
         uses: ./
-      - name: Evaluate if there are changes
-        if: steps.check-changes.outputs.outcome == failure()
-        run: echo "There are uncommitted changes"
+      - name: Print uncommitted changes
+        if: steps.check-changes.outputs.changes != ''
+        run: echo ${{ steps.check-changes.outputs.changes }}

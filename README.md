@@ -6,8 +6,7 @@ A GitHub action for checking if repository has uncommitted changes.
 
 ### `changes`
 
-Value indicating if there are uncommitted changes in the repository. If `changed` is equal to `1`
-there are uncommitted changes. No changes will return `0`.
+Changes outputted by `git status --porcelain`.
 
 ### Example usage
 
@@ -26,7 +25,26 @@ jobs:
         id: check-changes
         uses: mskri/check-uncommitted-changes-action@v1.0.0
       - name: Evaluate if there are changes
-        if: steps.check-changes.outputs.changes == 1
+        if: steps.check-changes.outputs.outcome == failure()
+        run: echo "There are uncommitted changes"
+```
+
+```yaml
+name: Check uncommitted changes and print them out
+jobs:
+  check-uncommitted-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Make uncommitted changes by creating empty file
+        run: touch uncommitted.tmp
+      - name: Check for uncommitted changes
+        id: check-changes
+        uses: mskri/check-uncommitted-changes-action@v1.0.0
+      - name: Print uncommitted changes
+        if: steps.check-changes.outputs.changes != ''
         run: echo "There are uncommitted changes"
 ```
 
