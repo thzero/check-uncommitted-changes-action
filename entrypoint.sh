@@ -5,8 +5,10 @@ function check_uncommitted_changes() {
   if [[ -z "$(git status --porcelain $STATUS_ARGS $PATHSPEC)" ]];
   then
     echo "0"
+    return 0
   else
     echo "1"
+    return 1
   fi
 }
 
