@@ -2,7 +2,16 @@
 set -e
 
 function check_uncommitted_changes() {
-  status=$(git status --porcelain)
+  if [[ -z "$(git status --porcelain $STATUS_ARGS $PATHSPEC)" ]];
+  then
+    echo "0"
+  else
+    echo "1"
+  fi
+}
+
+function check_uncommitted_changes_status() {
+  status=$(git status --porcelain $STATUS_ARGS $PATHSPEC)
   if [ -n "$status" ]; then
     status="${status//'%'/'%25'}"
     status="${status//$'\n'/'%0A'}"
@@ -15,4 +24,5 @@ function check_uncommitted_changes() {
   fi
 }
 
-echo ::set-output name=changes::$(check_uncommitted_changes)
+echo ::set-output name=changed::$(check)
+echo ::set-output name=changes::$(check_uncommitted_changes_status)
