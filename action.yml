@@ -1,4 +1,4 @@
-name: "Check uncommitted changes"
+name: "Check git uncommitted changes"
 description: "Checks if a git repository has uncommitted changes"
 branding:
   icon: "alert-circle"
