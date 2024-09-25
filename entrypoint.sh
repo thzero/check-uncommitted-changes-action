@@ -27,5 +27,10 @@ function check_uncommitted_changes_status() {
 }
 
 git config --global --add safe.directory /github/workspace
-echo ::set-output name=changed::$(check_uncommitted_changes)
-echo ::set-output name=changes::$(check_uncommitted_changes_status)
+
+changed=$(check_uncommitted_changes)
+changes=$(check_uncommitted_changes_status)
+
+echo "changed=$changed" >> $GITHUB_OUTPUT
+echo "changes=$changes" >> $GITHUB_OUTPUT
+
